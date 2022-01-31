@@ -11,11 +11,13 @@ const ItemSchema = mongoose.Schema({
     },
     price: {
         type: Number,
-        required: true
+        required: true,
+        min: [0, 'Price cannot be less than zero.']
     },
     quantity: {
         type: Number,
-        required: true
+        required: true,
+        min: [1, 'Quantity cannot be zero or less.']
     }
 });
 
