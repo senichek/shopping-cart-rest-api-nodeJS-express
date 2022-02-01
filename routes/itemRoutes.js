@@ -71,6 +71,34 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.patch("/:itemID", async (req, res) => {
+  try {
+    // If the quantity is zero, then it makes no sense to update the item
+    // We can delete the item.
+    if (req.body.quantity <= 0) {
+      const deleted = await Item.deleteOne({ _id: req.params.itemID });
+      logger.info("Deleted item " + req.body.title + " because quantity = " + req.body.quantity);
+      res.json(deleted);
+    } else {
+      const updatedItem = await Item.updateOne(
+        { _id: req.params.itemID },  // _id - this is how ID looks in DB;
+        {
+            $set:
+            {
+                title: req.body.title,
+                description: req.body.description,
+                price: req.body.price,
+                quantity: req.body.quantity
+            }
+        }, { runValidators: true }
+    );
+    res.json(updatedItem);
+    }
+  } catch (err) {
+      res.json({ message: err });
+  }
+});
+
 router.delete("/:itemID", async (req, res) => {
   try {
     const deleted = await Item.deleteOne({ _id: req.params.itemID });
