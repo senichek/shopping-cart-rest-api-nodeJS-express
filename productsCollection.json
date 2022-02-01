@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Phone XL",
+    "description": "A large phone with one of the best screens",
+    "price": 799,
+    "quantity": 1
+  },
+  {
+    "title": "Phone Mini",
+    "description": "A great phone with one of the best cameras",
+    "price": 699,
+    "quantity": 1
+  },
+  {
+    "title": "Phone Standard",
+    "price": 299,
+    "quantity": 1
+  }
+]
