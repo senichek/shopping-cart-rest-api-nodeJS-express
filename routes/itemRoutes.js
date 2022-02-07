@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Item = require("../models/Item");
 const winston = require("winston");
+const { Schema } = require("mongoose");
 
 const logger = winston.createLogger({
   transports: [
@@ -129,5 +130,34 @@ router.patch("/:itemID", async (req, res) => {
     res.json({ message: err });
   }
 });
+
+router.post("/updateQuantity", async (req, res) => {
+  try {
+    let updatedItems = [];
+    for (let i = 0; i < req.body.length; i++) {
+      // Delete items with old quantity and recreate them with new quantity;
+      const itemToSave = new Item({
+        title: req.body[i].title,
+        description: req.body[i].description,
+        price: req.body[i].price,
+        quantity: req.body[i].quantity,
+      });
+
+      await Item.deleteOne({ _id: req.body[i]._id});
+      /* The <.save()> method is called on the item/object and not on Schema,
+      this is why we re-created the <itemToSave> above to access <save()> method. */
+      let updated = await itemToSave.save();
+      updatedItems.push(updated);
+    }
+    
+    logger.info("Updated quantity: " + updatedItems);
+    res.json(updated);
+
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
+
 
 module.exports = router;

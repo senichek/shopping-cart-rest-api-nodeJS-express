@@ -17,7 +17,7 @@ const ItemSchema = mongoose.Schema({
     quantity: {
         type: Number,
         required: true,
-        min: [1, 'Quantity cannot be zero or less.']
+        min: [0, 'Quantity cannot be less than zero.']
     }
 });
 
