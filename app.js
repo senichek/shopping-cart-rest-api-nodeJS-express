@@ -39,3 +39,5 @@ const itemRoute = require("./routes/itemRoutes");
 app.use("/item", itemRoute);
 
 app.listen(3001);
+
+module.exports.server = app;

@@ -43,31 +43,11 @@ router.post("/", async (req, res) => {
     price: req.body.price,
     quantity: req.body.quantity,
   });
-
-  // Checking if the item with the same name is present in DB.
-  let presentInDB = await Item.findOne({ title: item.title });
-
-  // If the item with the same name is present in DB
-  // then increase the item quantity instead of creating
-  // another copy in DB.
+  
   try {
-    if (presentInDB) {
-      const updatedItem = await Item.updateOne(
-        { _id: presentInDB._id }, // _id - this is how ID looks in DB;
-        { $set: { 
-          quantity: req.body.quantity + presentInDB.quantity,
-          description: req.body.description,
-          price: req.body.price,
-        } },
-        { runValidators: true } // runValidators activates the validation of constraints from models.Item.js (Mongoose schema).
-      );
-      logger.info("Updated quantity of " + presentInDB.title);
-      res.json(updatedItem);
-    } else {
-      const created = await item.save();
+    const created = await item.save();
       res.json(created);
       logger.info("Created: " + created);
-    }
   } catch (err) {
     res.json({ errorMessage: err });
   }
