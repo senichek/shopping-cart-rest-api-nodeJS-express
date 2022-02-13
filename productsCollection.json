@@ -1,20 +1,17 @@
 [
   {
-    "_id": "620557369154651ad37d49e6",
     "title": "Phone XL",
     "description": "A large phone with one of the best screens",
     "price": 799,
     "quantity": 1
   },
   {
-    "_id": "620557369154651ad37d49e7",
     "title": "Phone Mini",
     "description": "A great phone with one of the best cameras",
     "price": 699,
     "quantity": 1
   },
   {
-    "_id": "620557369154651ad37d49e8",
     "title": "Phone Standard",
     "price": 299,
     "quantity": 1

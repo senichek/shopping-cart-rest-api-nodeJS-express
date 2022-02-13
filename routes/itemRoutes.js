@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Item = require("../models/Item");
 const winston = require("winston");
-const { Schema } = require("mongoose");
 
 const logger = winston.createLogger({
   transports: [
@@ -19,7 +18,6 @@ router.get("/all", async (req, res) => {
   try {
     const items = await Item.find();
     res.json(items);
-    logger.info("getAll was called");
   } catch (err) {
     res.json({ message: err });
   }

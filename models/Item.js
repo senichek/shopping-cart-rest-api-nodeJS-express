@@ -22,4 +22,4 @@ const ItemSchema = mongoose.Schema({
 });
 
 // Making the items available outside of this file.
-module.exports = mongoose.model("Items", ItemSchema);
+module.exports = mongoose.model("items", ItemSchema);
