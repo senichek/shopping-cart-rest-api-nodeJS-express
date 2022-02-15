@@ -22,7 +22,7 @@ const protect = async (req, res, next) => {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             // The decoded token has the user's ID (see generateJWT method). 
             // We use ID to get the user from DB.
-            req.user = await User.findById(decoded.id).select('-password'); // it will not inculde the password
+            req.user = await User.findById(decoded.userID).select('-password'); // it will not inculde the password
             next();
         } catch (error) {
             res.status(401) // Not authorized

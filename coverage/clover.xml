@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1644956507918" clover="3.2.0">
-  <project timestamp="1644956507918" name="All files">
-    <metrics statements="143" coveredstatements="125" conditionals="12" coveredconditionals="10" methods="17" coveredmethods="17" elements="172" coveredelements="152" complexity="0" loc="143" ncloc="143" packages="4" files="7" classes="7"/>
+<coverage generated="1644958922234" clover="3.2.0">
+  <project timestamp="1644958922234" name="All files">
+    <metrics statements="144" coveredstatements="126" conditionals="12" coveredconditionals="10" methods="17" coveredmethods="17" elements="173" coveredelements="153" complexity="0" loc="144" ncloc="144" packages="4" files="7" classes="7"/>
     <package name="models">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="Item.js" path="C:\Programming\shopping-cart-rest-api\models\Item.js">
@@ -119,36 +119,37 @@
         <line num="90" count="1" type="stmt"/>
         <line num="93" count="1" type="stmt"/>
         <line num="94" count="1" type="stmt"/>
-        <line num="97" count="1" type="cond" truecount="3" falsecount="1"/>
-        <line num="98" count="1" type="stmt"/>
-        <line num="106" count="0" type="stmt"/>
-        <line num="107" count="0" type="stmt"/>
+        <line num="100" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="109" count="0" type="stmt"/>
         <line num="110" count="0" type="stmt"/>
-        <line num="114" count="2" type="stmt"/>
+        <line num="113" count="0" type="stmt"/>
+        <line num="117" count="2" type="stmt"/>
       </file>
     </package>
     <package name="security">
-      <metrics statements="18" coveredstatements="16" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+      <metrics statements="19" coveredstatements="17" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="securityUtils.js" path="C:\Programming\shopping-cart-rest-api\security\securityUtils.js">
-        <metrics statements="18" coveredstatements="16" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <metrics statements="19" coveredstatements="17" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="15" count="2" type="cond" truecount="4" falsecount="0"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="16" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="31" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
       </file>
     </package>
     <package name="tests.configs">
