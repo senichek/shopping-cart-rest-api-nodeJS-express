@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/User");
 const winston = require("winston");
 const bcrypt = require("bcrypt");
+const { generateJWT } = require("../security/securityUtils.js");
 
 const logger = winston.createLogger({
   transports: [
@@ -33,12 +34,12 @@ router.post("/", async (req, res) => {
     password: req.body.password,
     role: req.body.role,
   });
-  
+
   try {
-    user.password = await bcrypt.hash(user.password, 10);
+    user.password = await bcrypt.hash(user.password, 4);
     const created = await user.save();
-      res.json(created);
-      logger.info("Created: " + created);
+    res.json(created);
+    logger.info("Created: " + created);
   } catch (err) {
     res.json({ errorMessage: err.message });
   }
@@ -55,23 +56,22 @@ router.get("/:userID", async (req, res) => {
 
 router.patch("/:userID", async (req, res) => {
   try {
-      const updated = await User.updateOne(
-        { _id: req.params.userID },  // _id - this is how ID looks in DB;
-        {
-            $set:
-            {
-                name: req.body.name,
-                email: req.body.email,
-                password: await bcrypt.hash(req.body.password, 10),
-                role: req.body.role
-            }
-        }, { runValidators: true }
+    const updated = await User.updateOne(
+      { _id: req.params.userID }, // _id - this is how ID looks in DB;
+      {
+        $set: {
+          name: req.body.name,
+          email: req.body.email,
+          password: await bcrypt.hash(req.body.password, 4),
+          role: req.body.role,
+        },
+      },
+      { runValidators: true }
     );
-    logger.info("Udpated: " + req.body.name)
+    logger.info("Udpated: " + req.body.name);
     res.json(updated);
-  
   } catch (err) {
-      res.json({ message: err });
+    res.json({ message: err });
   }
 });
 
@@ -82,6 +82,32 @@ router.delete("/:userID", async (req, res) => {
     logger.info("Deleted item with ID: " + req.params.userID);
   } catch (err) {
     res.json({ message: err });
+  }
+});
+
+router.post("/login", async (req, res) => {
+  // Destructuring
+  const { email, password } = req.body;
+
+  // Using email to find the user in DB, email is unique.
+  try {
+    const user = await User.findOne({ email });
+
+    // Matching the password from request with the one of the user from DB.
+    if (user && (await bcrypt.compare(password, user.password))) {
+      res.json({
+        _id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        token:  generateJWT(user.id)
+      });
+    } else {
+      res.status(400);
+      throw new Error("Invalid credentials.");
+    }
+  } catch (err) {
+    res.json({ message: err.message });
   }
 });
 

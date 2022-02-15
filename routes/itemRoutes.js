@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Item = require("../models/Item");
 const winston = require("winston");
+const { protect } = require("../security/securityUtils.js");
 
 const logger = winston.createLogger({
   transports: [
@@ -14,7 +15,7 @@ const logger = winston.createLogger({
   ],
 });
 
-router.get("/all", async (req, res) => {
+router.get("/admin/all", protect, async (req, res) => {
   try {
     const items = await Item.find();
     res.json(items);
