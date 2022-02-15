@@ -3,6 +3,7 @@ const User = require("../models/User");
 require("dotenv/config");
 
 const generateJWT = (userID) => {
+    //process.env.JWT_SECRET - environment variable (.env)
   return jwt.sign({ userID }, process.env.JWT_SECRET, { expiresIn: "30d" });
 };
 

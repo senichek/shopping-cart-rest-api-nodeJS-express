@@ -127,3 +127,16 @@ describe("DELETE", () => {
     expect(nonExistant.text).toEqual("null");
   });
 });
+
+describe("POST /user/login", () => {
+  it("should log in the user", async () => {
+    const res = await request(app.testServer).post("/user/login").send({
+      email: "jane@gmail.com",
+      password: "pass111",
+    });
+    expect(res.statusCode).toEqual(200);
+    // Just checking the part of the token which remains unchanged (the part 
+    // containing the user's ID).
+    expect(res.body.token.split('.')[0]).toEqual("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9");
+  });
+});

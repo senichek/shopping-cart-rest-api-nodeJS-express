@@ -93,7 +93,10 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email });
 
-    // Matching the password from request with the one of the user from DB.
+    /* Matching the password from request with the one of the user from DB.
+    If the user exists and the password is correct, we return the user with
+    the JWT token that can be used for further authentification in 
+    <securityUtils.protect> method.  */
     if (user && (await bcrypt.compare(password, user.password))) {
       res.json({
         _id: user.id,

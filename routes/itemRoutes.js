@@ -15,6 +15,15 @@ const logger = winston.createLogger({
   ],
 });
 
+router.get("/all", async (req, res) => {
+  try {
+    const items = await Item.find();
+    res.json(items);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 router.get("/admin/all", protect, async (req, res) => {
   try {
     const items = await Item.find();

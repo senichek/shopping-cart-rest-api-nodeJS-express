@@ -3,6 +3,7 @@ const request = require("supertest");
 const mongoDB = require("./configs/mongoDB.js");
 const items = require('../productsCollection.json')
 const Item = require("../models/Item"); // Mongoose Schema
+const { response } = require("express");
 
 beforeAll(() => {
   mongoDB.connectDB;
@@ -23,6 +24,30 @@ describe("GET /item/all", () => {
     expect(res.body[0].title).toEqual("Phone XL");
     expect(res.body[1].title).toEqual("Phone Mini");
     expect(res.body[2].title).toEqual("Phone Standard");
+  });
+});
+
+describe("GET /item/admin/all", () => {
+  it("it should fetch 3 items from DB", async () => {  
+    /* The Bearer token is obtained from the "/login" endpoint in
+    userRoutes.js. If the login is successful the Bearer token will 
+    be available in the response. We can use the bearer token for 
+    the authentication */
+    const res = await request(app.testServer).get("/item/admin/all/").set({Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MjBjMDJiNzU4Njk5YzU0YzhkMTQ4OTAiLCJpYXQiOjE2NDQ5NTQzMTYsImV4cCI6MTY0NzU0NjMxNn0.DKCHQyrL_UgUF3TuRsVV_IxJ6G2dUpFVkAP7pDpRgzI"});
+
+    expect(res.statusCode).toEqual(200);
+    expect(res.body.length).toEqual(3);
+    expect(res.body[0].title).toEqual("Phone XL");
+    expect(res.body[1].title).toEqual("Phone Mini");
+    expect(res.body[2].title).toEqual("Phone Standard");
+  });
+});
+
+describe("GET /item/admin/all", () => {
+  it("should return error when not authorized", async () => {  
+    const res = await request(app.testServer).get("/item/admin/all/");
+    expect(res.statusCode).toEqual(401);
+    expect(res.body.message).toEqual("Authentication error. No token.");
   });
 });
 
