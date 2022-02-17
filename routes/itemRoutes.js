@@ -25,6 +25,7 @@ router.get("/all", async (req, res) => {
 });
 
 router.get("/admin/all", protect, async (req, res) => {
+  // The authenticated user will be present in req (see securityUtils.protect).
   try {
     const items = await Item.find();
     res.json(items);
