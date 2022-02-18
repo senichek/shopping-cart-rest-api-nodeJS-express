@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1644958922234" clover="3.2.0">
-  <project timestamp="1644958922234" name="All files">
-    <metrics statements="144" coveredstatements="126" conditionals="12" coveredconditionals="10" methods="17" coveredmethods="17" elements="173" coveredelements="153" complexity="0" loc="144" ncloc="144" packages="4" files="7" classes="7"/>
+<coverage generated="1645123444861" clover="3.2.0">
+  <project timestamp="1645123444861" name="All files">
+    <metrics statements="141" coveredstatements="123" conditionals="12" coveredconditionals="10" methods="17" coveredmethods="17" elements="170" coveredelements="150" complexity="0" loc="141" ncloc="141" packages="4" files="7" classes="7"/>
     <package name="models">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="Item.js" path="C:\Programming\shopping-cart-rest-api\models\Item.js">
@@ -128,9 +128,9 @@
       </file>
     </package>
     <package name="security">
-      <metrics statements="19" coveredstatements="17" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+      <metrics statements="16" coveredstatements="14" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="securityUtils.js" path="C:\Programming\shopping-cart-rest-api\security\securityUtils.js">
-        <metrics statements="19" coveredstatements="17" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <metrics statements="16" coveredstatements="14" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
@@ -140,16 +140,13 @@
         <line num="16" count="2" type="cond" truecount="4" falsecount="0"/>
         <line num="17" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="33" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="1" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
       </file>
     </package>
     <package name="tests.configs">

@@ -7,6 +7,10 @@ const User = require("./models/User"); // Mongoose Schema
 const products = require('./productsCollection.json')
 const users = require('./usersCollection.json')
 require("dotenv/config");
+const swaggerConfig = require("./swagger/config.js")
+
+/* swaggerJsdoc = require("swagger-jsdoc"),
+swaggerUi = require("swagger-ui-express"); */
 
 // Execute the package
 const app = express();
@@ -47,6 +51,9 @@ const userRoute = require("./routes/userRoutes");
 // Every time you go to /item the itemRoute will be used;
 app.use("/item", itemRoute);
 app.use("/user", userRoute);
+
+// Swagger. See swagger/config.js
+app.use(swaggerConfig.docsURL, swaggerConfig.swaggerServe, swaggerConfig.swaggerSetup);
 
 app.listen(3001);
 //app.listen();

@@ -3,6 +3,9 @@ const router = express.Router();
 const Item = require("../models/Item");
 const winston = require("winston");
 const { protect } = require("../security/securityUtils.js");
+const swaggerJSDoc = require("swagger-jsdoc");
+
+// Swagger guide: https://javascript.plainenglish.io/how-to-implement-and-use-swagger-in-nodejs-d0b95e765245
 
 const logger = winston.createLogger({
   transports: [
@@ -15,6 +18,18 @@ const logger = winston.createLogger({
   ],
 });
 
+
+
+/**
+ * @swagger
+ * /item/all:
+ *  get:
+ *    description: use to request all items
+ *    tags: [Items]
+ *    responses:
+ *      '200':
+ *        description: successful response
+ */
 router.get("/all", async (req, res) => {
   try {
     const items = await Item.find();
