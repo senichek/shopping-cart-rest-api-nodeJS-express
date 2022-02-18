@@ -18,7 +18,37 @@ const logger = winston.createLogger({
   ],
 });
 
-
+// Schemas and docs must be in the same file.
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Item:
+ *       type: object
+ *       required:
+ *         - title
+ *         - description
+ *         - price
+ *         - quantity
+ *       properties:
+ *         title:
+ *           type: string
+ *           description: title/name of the item
+ *         description:
+ *           type: string
+ *           description: description of the item
+ *         price:
+ *           type: integer
+ *           description: price of the item
+ *         quantity:
+ *           type: integer
+ *           description: quantity of the item
+ *       example:
+ *         title: Telephone
+ *         description: Old but gold
+ *         price: 900
+ *         quantity: 1
+ */
 
 /**
  * @swagger
@@ -49,15 +79,53 @@ router.get("/admin/all", protect, async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /item/{itemID}:
+ *  get:
+ *    description: get Item by its ID
+ *    tags: [Items]
+ *    parameters:
+ *       - in : path
+ *         name: itemID
+ *         description: id of an item
+ *         schema:
+ *           type: string
+ *           required: true
+ *    responses:
+ *      '200':
+ *        description: successful response
+ *      '400':
+ *        description: bad request
+ */
 router.get("/:itemID", async (req, res) => {
   try {
     const itemfromDB = await Item.findById(req.params.itemID);
     res.json(itemfromDB);
   } catch (error) {
+    res.status(400);
     res.json({ message: error });
   }
 });
 
+/**
+ * @swagger
+ * /item:
+ *  post:
+ *    description: create new Item
+ *    tags: [Items]
+ *    requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Item'
+ *    responses:
+ *      '201':
+ *        description: successful response
+ *      '400':
+ *        description: bad request
+ */
 router.post("/", async (req, res) => {
   // Creating the item (reading the details from the body)
   // to push to DB.
@@ -77,6 +145,45 @@ router.post("/", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /item/{itemID}:
+ *  patch:
+ *    description: update item info
+ *    tags: [Items]
+ *    parameters:
+ *       - in : path
+ *         name: itemID
+ *         description: id of user
+ *         schema:
+ *           type: string
+ *           required: true
+ *    requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *              title:
+ *                type: string
+ *              description: 
+ *                type: string
+ *              price: 
+ *                type: integer
+ *              quantity: 
+ *                type: integer
+ *             example:
+ *                title: Telephone_updated
+ *                description: updated_descr
+ *                price: 599
+ *                quantity: 7
+ *    responses:
+ *      '200':
+ *        description: successful response
+ *      '400':
+ *        description: bad request
+ */
 router.patch("/:itemID", async (req, res) => {
   try {
     // If the quantity is zero, then it makes no sense to update the item
@@ -102,16 +209,37 @@ router.patch("/:itemID", async (req, res) => {
     res.json(updatedItem);
     }
   } catch (err) {
+    res.status(400);
       res.json({ message: err });
   }
 });
 
+/**
+ * @swagger
+ * /item/{itemID}:
+ *  delete:
+ *    description: delete item by its ID
+ *    tags: [Items]
+ *    parameters:
+ *       - in : path
+ *         name: itemID
+ *         description: id of an item
+ *         schema:
+ *           type: string
+ *           required: true
+ *    responses:
+ *      '200':
+ *        description: successful response
+ *      '400':
+ *        description: bad request
+ */
 router.delete("/:itemID", async (req, res) => {
   try {
     const deleted = await Item.deleteOne({ _id: req.params.itemID });
     res.json(deleted);
     logger.info("Deleted item with ID: " + req.params.itemID);
   } catch (err) {
+    res.status(400);
     res.json({ message: err });
   }
 });
