@@ -7,6 +7,9 @@
     "start": "nodemon app.js",
     "test": "jest --detectOpenHandles --forceExit --coverage --verbose"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
