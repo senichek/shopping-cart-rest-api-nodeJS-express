@@ -55,7 +55,7 @@ app.use("/user", userRoute);
 // Swagger. See swagger/config.js
 app.use(swaggerConfig.docsURL, swaggerConfig.swaggerServe, swaggerConfig.swaggerSetup);
 
-app.listen(3001);
+app.listen(process.env.PORT);
 //app.listen();
 
 module.exports.server = app;
