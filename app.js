@@ -20,7 +20,8 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: ['http://localhost:3000']
+    //origin: ['http://localhost:3000']
+    origin: ['https://shopping-cart-front-react.herokuapp.com']
 }));
 
 // Connect to DB, see .env file;
