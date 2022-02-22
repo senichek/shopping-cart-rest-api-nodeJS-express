@@ -8,16 +8,6 @@ const products = require("./productsCollection.json");
 const users = require("./usersCollection.json");
 require("dotenv/config");
 const swaggerConfig = require("./swagger/config.js");
-const { MongoMemoryServer } = require("mongodb-memory-server");
-
-const connectDB = async () => {
-    const mongo = await MongoMemoryServer.create();
-    const mongoURI = mongo.getUri();
-    mongoose.connect(mongoURI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-}
 
 /* swaggerJsdoc = require("swagger-jsdoc"),
 swaggerUi = require("swagger-ui-express"); */
@@ -37,17 +27,15 @@ app.use(
 );
 
 // Connect to DB, see .env file;
-/* mongoose.connect(
+mongoose.connect(
   process.env.DB_CONNECTION,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {}
-); */
+);
 
-// Connecting to in-memory mongoDB
-connectDB();
 
 // DB Connection status - 0: disconnected; 1: connected; 2: connecting; 3: disconnecting;
-//console.log("DB connection status: " + mongoose.connection.readyState);
+console.log("DB connection status: " + mongoose.connection.readyState);
 
 // Repopulate DB on the application's start up.
 // We use async to wait till db is ready.
