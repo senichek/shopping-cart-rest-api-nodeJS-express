@@ -8,7 +8,16 @@ const products = require("./productsCollection.json");
 const users = require("./usersCollection.json");
 require("dotenv/config");
 const swaggerConfig = require("./swagger/config.js");
-const mongoDB = require("./tests/configs/mongoDB.js"); // In-memory mongoDB
+const { MongoMemoryServer } = require("mongodb-memory-server");
+
+const connectDB = async () => {
+    const mongo = await MongoMemoryServer.create();
+    const mongoURI = mongo.getUri();
+    mongoose.connect(mongoURI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+}
 
 /* swaggerJsdoc = require("swagger-jsdoc"),
 swaggerUi = require("swagger-ui-express"); */
@@ -35,7 +44,7 @@ app.use(
 ); */
 
 // Connecting to in-memory mongoDB
-mongoDB.connectDB;
+connectDB();
 
 // DB Connection status - 0: disconnected; 1: connected; 2: connecting; 3: disconnecting;
 //console.log("DB connection status: " + mongoose.connection.readyState);
