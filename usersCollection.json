@@ -4,5 +4,12 @@
     "email": "john@gmail.com",
     "password": "$2a$04$KYOuyQ1Ay0lIN0bTgZObDe7VndvC3hhgv4RQR/0RUn92N/jdYv6by",
     "role": "Admin"
+  },
+
+  {
+    "name": "Jane",
+    "email": "jane@gmail.com",
+    "password": "$2a$04$11aevk2mhZDClp8iybxWceW5zx3g20VeuvdWcUigzmVhmf6f4YjW2",
+    "role": "Admin"
   }
 ]
